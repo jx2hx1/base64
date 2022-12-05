@@ -4,9 +4,12 @@ import imageToBase64 from "image-to-base64";
 import cors from "cors";
 
 const app = express();
-
 app.use(express.json());
 app.use(cors());
+
+app.get("/", (req, res) => {
+  res.send("hello world");
+});
 
 // GET 요청이 들어왔을 때
 app.get("/getBase64", async (req, res) => {
@@ -26,7 +29,8 @@ app.get("/getBase64", async (req, res) => {
     .catch((error) => {
       console.log(error);
     });
-  return result;
+  // return result;
+  res.send(result);
 });
 
 app.listen(3000, () => {
